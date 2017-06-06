@@ -1,24 +1,20 @@
 {
   "name": "@angular-addons/focus",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "description": "Angular 2 input focus direcrive",
   "repository": {
     "type": "git",
     "url": "https://github.com/art-hacker/angular2-addons.git"
   },
-  "main": "focus.ts",
-  "typings": "./focus.d.ts",
-  "scripts": {
-    "prepublishOnly": "tsc"
-  },
+  "main": "index.ts",
   "author": "angular-addons",
   "license": "ISC",
   "dependencies": {
-    "@angular/core": "~4.1.0"
+    "@angular/core": "^4.1.3"
   },
   "devDependencies": {
-    "rxjs": "~5.0.2",
-    "typescript": "~2.0.2",
-    "zone.js": "^0.8.11"
+    "rxjs": "~5.0.1",
+    "typescript": "~2.2.0",
+    "zone.js": "^0.8.4"
   }
 }

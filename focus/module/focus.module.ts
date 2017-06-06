@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 
-import {AutoFocusDirective} from "./Directive/AutoFocusDirective";
+import {AutoFocusDirective} from "./focus.directive";
 
 @NgModule({
     declarations: [
@@ -10,4 +10,4 @@ import {AutoFocusDirective} from "./Directive/AutoFocusDirective";
         AutoFocusDirective
     ]
 })
-export class AutoFocusModule {}
+export class FocusModule {}
