@@ -1,0 +1,9 @@
+@import '~sass-material-colors';
+@import '~sass-mq';
+
+.body {
+  padding: 15px;
+  display: block;
+  border-bottom: 1px material-color("grey", '300') solid;
+  overflow: auto;
+}

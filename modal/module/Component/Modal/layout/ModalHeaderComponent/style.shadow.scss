@@ -1,0 +1,9 @@
+@import '~sass-material-colors';
+@import '~sass-mq';
+
+.title {
+  padding: 15px;
+  border-bottom: 1px material-color("grey", '300') solid;
+  font-weight: bold;
+  background: material-color("grey", '100');
+}
