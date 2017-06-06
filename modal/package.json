@@ -1,0 +1,31 @@
+{
+  "name": "@angular-addons/modal",
+  "version": "0.0.10",
+  "description": "Angular 2 modal window",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/art-hacker/angular2-addons.git"
+  },
+  "main": "index.ts",
+  "typings": "./index.d.ts",
+  "scripts": {
+    "prepare": "tsc"
+  },
+  "author": "angular-addons",
+  "license": "ISC",
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "sass-material-colors": "0.0.5",
+    "sass-mq": "^3.3.2"
+  },
+  "devDependencies": {
+    "@angular/common": "^4.1.0",
+    "@angular/compiler": "^4.1.0",
+    "@angular/core": "^4.1.0",
+    "@angular/platform-browser": "^4.1.0",
+    "@angular/platform-browser-dynamic": "^4.1.0",
+    "rxjs": "~5.0.2",
+    "typescript": "^2.3.4",
+    "zone.js": "^0.8.11"
+  }
+}
