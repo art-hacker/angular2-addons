@@ -10,7 +10,7 @@ import {LoadingBarSubscriptions} from "../Subscription/LoadingBarSubscriptions";
 @Injectable()
 export class LoadingBarService {
 
-    private loaderBar: LoadingBar = {
+    private loadingBar: LoadingBar = {
         progress: 0,
         state: LoadingBarState.Inactive
     };
@@ -19,15 +19,15 @@ export class LoadingBarService {
         private event: LoadingBarEvents,
         private subscription: LoadingBarSubscriptions
     ) {
-        this.event.onChangeProgress.subscribe((loaderBar: LoadingBar) => {
-            if (loaderBar.progress > 0)
+        this.event.onChangeProgress.subscribe((loadingBar: LoadingBar) => {
+            if (loadingBar.progress > 0)
                 this.activate();
 
-            if (loaderBar.progress == 100)
-                this.event.onCompleteProgress.emit(loaderBar);
+            if (loadingBar.progress == 100)
+                this.event.onCompleteProgress.emit(loadingBar);
 
-            if (loaderBar.progress == 0)
-                this.event.onResetProgress.emit(loaderBar);
+            if (loadingBar.progress == 0)
+                this.event.onResetProgress.emit(loadingBar);
 
         });
 
@@ -50,12 +50,12 @@ export class LoadingBarService {
     }
 
     public setProgress(progress: number): void {
-        this.loaderBar.progress = progress;
-        this.event.onChangeProgress.emit(this.getLoaderBar);
+        this.loadingBar.progress = progress;
+        this.event.onChangeProgress.emit(this.getLoadingBar);
     }
 
     public incProgress(): void {
-        this.setProgress(this.getLoaderBar.progress + 1);
+        this.setProgress(this.getLoadingBar.progress + 1);
     }
 
     public completeProgress(): void {
@@ -74,7 +74,7 @@ export class LoadingBarService {
         this.incProgress();
         this.subscription.startProgressSubscription = Observable
             .interval(duration)
-            .take(100 - this.getLoaderBar.progress)
+            .take(100 - this.getLoadingBar.progress)
             .subscribe(() => this.incProgress());
     }
 
@@ -83,16 +83,16 @@ export class LoadingBarService {
     }
 
     public activate(): void {
-        this.loaderBar.state = LoadingBarState.Active;
-        this.event.onChangeState.emit(this.getLoaderBar);
+        this.loadingBar.state = LoadingBarState.Active;
+        this.event.onChangeState.emit(this.getLoadingBar);
     }
 
     public deactivate(): void {
-        this.loaderBar.state = LoadingBarState.Inactive;
-        this.event.onChangeState.emit(this.getLoaderBar);
+        this.loadingBar.state = LoadingBarState.Inactive;
+        this.event.onChangeState.emit(this.getLoadingBar);
     }
 
-    public get getLoaderBar(): LoadingBar {
-        return this.loaderBar;
+    public get getLoadingBar(): LoadingBar {
+        return this.loadingBar;
     }
 }

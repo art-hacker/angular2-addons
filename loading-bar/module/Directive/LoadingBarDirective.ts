@@ -13,11 +13,11 @@ export class LoadingBarDirective {
 
     constructor(private loadingBarEvents: LoadingBarEvents) {
         loadingBarEvents.onChangeProgress
-            .map((loaderBar: LoadingBar) => loaderBar.progress)
+            .map((loadingBar: LoadingBar) => loadingBar.progress)
             .subscribe((progress: number) => this.width = progress);
 
         loadingBarEvents.onChangeState
-            .map((loaderBar: LoadingBar) => loaderBar.state)
+            .map((loadingBar: LoadingBar) => loadingBar.state)
             .subscribe((state: LoadingBarState) => this.opacty = state)
     }
 }
