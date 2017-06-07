@@ -2,24 +2,24 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 
 import {LoadingBarEvents} from "../Event/LoadingBarEvents";
-import {LoaderBar} from "../Entity/LoaderBar";
-import {LoaderBarState} from "../Entity/LoaderBarState";
+import {LoadingBar} from "../Entity/LoadingBar";
+import {LoadingBarState} from "../Entity/LoadingBarState";
 
 import {LoadingBarSubscriptions} from "../Subscription/LoadingBarSubscriptions";
 
 @Injectable()
 export class LoadingBarService {
 
-    private loaderBar: LoaderBar = {
+    private loaderBar: LoadingBar = {
         progress: 0,
-        state: LoaderBarState.Inactive
+        state: LoadingBarState.Inactive
     };
 
     constructor(
         private event: LoadingBarEvents,
         private subscription: LoadingBarSubscriptions
     ) {
-        this.event.onChangeProgress.subscribe((loaderBar: LoaderBar) => {
+        this.event.onChangeProgress.subscribe((loaderBar: LoadingBar) => {
             if (loaderBar.progress > 0)
                 this.activate();
 
@@ -83,16 +83,16 @@ export class LoadingBarService {
     }
 
     public activate(): void {
-        this.loaderBar.state = LoaderBarState.Active;
+        this.loaderBar.state = LoadingBarState.Active;
         this.event.onChangeState.emit(this.getLoaderBar);
     }
 
     public deactivate(): void {
-        this.loaderBar.state = LoaderBarState.Inactive;
+        this.loaderBar.state = LoadingBarState.Inactive;
         this.event.onChangeState.emit(this.getLoaderBar);
     }
 
-    public get getLoaderBar(): LoaderBar {
+    public get getLoaderBar(): LoadingBar {
         return this.loaderBar;
     }
 }

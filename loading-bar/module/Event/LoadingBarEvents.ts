@@ -1,11 +1,11 @@
 import {EventEmitter, Injectable} from "@angular/core";
 
-import {LoaderBar} from "../Entity/LoaderBar";
+import {LoadingBar} from "../Entity/LoadingBar";
 
 @Injectable()
 export class LoadingBarEvents {
-    public onChangeProgress = new EventEmitter<LoaderBar>();
-    public onCompleteProgress = new EventEmitter<LoaderBar>();
-    public onResetProgress = new EventEmitter<LoaderBar>();
-    public onChangeState = new EventEmitter<LoaderBar>();
+    public onChangeProgress = new EventEmitter<LoadingBar>();
+    public onCompleteProgress = new EventEmitter<LoadingBar>();
+    public onResetProgress = new EventEmitter<LoadingBar>();
+    public onChangeState = new EventEmitter<LoadingBar>();
 }
