@@ -1,0 +1,29 @@
+#!/bin/bash
+ 
+npm_publish()
+{
+    if is_package_version_update $1;
+    then
+        if ! npm publish modal --access public -loglevel silent
+        then
+            echo "npm push failed";
+            exit 1;
+        fi
+    fi;
+}
+
+is_package_version_update()
+{
+    if [[ `git diff HEAD $1/package.json | grep \"version\": | wc -l` > 1 ]]
+    then
+        return 0;
+    else
+        return 1;
+    fi
+}
+
+for D in *; do
+    if [ -d "${D}" ]; then
+        npm_publish ${D} 
+    fi
+done
