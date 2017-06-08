@@ -4,7 +4,7 @@ npm_publish()
 {
     if is_package_version_update $1;
     then
-        if ! npm publish modal --access public -loglevel silent
+        if ! npm publish $1 --access public -loglevel silent
         then
             echo "npm push failed";
             exit 1;

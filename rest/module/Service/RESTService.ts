@@ -8,7 +8,8 @@ export class RESTService extends Http
 {
     private path: string = "";
 
-    constructor(backend: XHRBackend, options: RequestOptions, @Optional() config: RESTServiceConfig) {
+    constructor(backend: XHRBackend, options: RequestOptions, @Optional() config: RESTServiceConfig) 
+    {
         super(backend, options);
         this.path = config.path;
     }
