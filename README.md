@@ -1,0 +1,1 @@
+![travis](https://travis-ci.org/art-hacker/angular2-addons.svg?branch=master)
