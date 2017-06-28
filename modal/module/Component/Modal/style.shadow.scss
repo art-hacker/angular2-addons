@@ -1,6 +1,8 @@
 @import '~sass-material-colors';
 @import '~sass-mq';
 
+$index: 1000;
+
 .modal, .backdrop {
   position: fixed;
   top: 0;
@@ -14,25 +16,34 @@
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
-  z-index: 1000;
-  @include mq($until: tablet) {
-    align-items: flex-end;
+  z-index: $index + 1;
+  overflow: auto;
+
+  .modal-center {
+    margin: auto;
+
+    @include mq($until: tablet) {
+      width: 100%;
+      align-self: flex-end;
+      margin-bottom: 0;
+    }
   }
 
   .modal-box {
     position: relative;
     z-index: 1;
     background: white;
-    overflow: auto;
-    
+    overflow: hidden;
+
     @include mq($from: tablet) {
       animation: fade 600ms ease-in-out both, zoom 600ms ease-in-out both;
       border-radius: 3px;
       box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
-      max-height: calc(100vh - 60px);
+      margin: 20px;
     }
+
     @include mq($until: tablet) {
-      width: 100% !important;
+      min-width: 100%;
     }
 
     a.close {
@@ -43,22 +54,24 @@
       color: material-color("grey", "400");
       display: block;
       transition: color 300ms linear;
+
       &:hover {
         color: material-color("grey", "500");
       }
     }
   }
-  
-  .backdrop {
-    background: rgba(0, 0, 0, 0.3);
-  }
+}
+
+.backdrop {
+  background: rgba(0, 0, 0, 0.3);
+  z-index: $index;
 }
 
 @include mq($from: desktop) {
   :host.shake .modal-box {
     animation: 
-            fade 600ms ease-in-out both, 
-            zoom 600ms ease-in-out both, 
-            shake 600ms cubic-bezier(.36,.07,.19,.97) both;
+      fade 600ms ease-in-out both,
+      zoom 600ms ease-in-out both,
+      shake 600ms cubic-bezier(.36, .07, .19, .97) both;
   }
 }

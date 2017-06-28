@@ -11,6 +11,7 @@ export class ModalComponent {
     @Input("width") width: string = "auto";
     @Input("height") height: string = "auto";
     @Input("backdrop") backdrop: boolean = true;
+    @Input("backdrop-close") backdropClose: boolean = true;
     @Input("can-close") canClose: boolean = true;
     @Output("on-close") onClose = new EventEmitter<void>();
 
