@@ -1,5 +1,5 @@
 import {Injectable, Optional} from "@angular/core";
-import {Http, Request, RequestOptions, RequestOptionsArgs, Response, XHRBackend} from "@angular/http";
+import {Headers, Http, Request, RequestOptions, RequestOptionsArgs, Response, XHRBackend} from "@angular/http";
 import {Observable} from "rxjs";
 import {RESTServiceConfig} from "./RESTServiceConfig";
 
@@ -10,7 +10,6 @@ export class RESTService extends Http
     private tokenKey: string = "token";
 
     private authorized: boolean = false;
-    private isFormData: boolean = false;
 
     constructor(backend: XHRBackend, options: RequestOptions, @Optional() config: RESTServiceConfig)
     {
@@ -25,28 +24,24 @@ export class RESTService extends Http
         return this;
     }
 
-    public withFile(): this
-    {
-        this.isFormData = true;
-        return this;
+    setAuthHeaders(request: Request | RequestOptionsArgs) {
+        if (this.authorized) {
+            if (!request.headers) {
+                request.headers = new Headers();
+            }
+            request.headers.append('Authorization', 'Bearer ' + localStorage.getItem(this.tokenKey));
+        }
+        this.authorized = false;
     }
 
     request(url: string | Request, options?: RequestOptionsArgs): Observable<Response>
     {
-        if(this.authorized) {
-            this.authorized = false;
-            options.headers.append('Authorization', 'Bearer ' + localStorage.getItem(this.tokenKey));
-        }
-
-        if(this.isFormData) {
-            this.isFormData = false;
-            options.headers.append('Content-Type', 'multipart/form-data');
-        }
-
         if (url instanceof Request) {
             url.url = this.path + url.url;
+            this.setAuthHeaders(url);
         } else {
             url = this.path + url;
+            this.setAuthHeaders(options);
         }
 
         return super.request(url, options).catch((error: Response) => {
