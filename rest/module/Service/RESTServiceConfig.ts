@@ -1,3 +1,4 @@
 export class RESTServiceConfig {
-    path: string
+    path: string;
+    tokenKey?: string;
 }

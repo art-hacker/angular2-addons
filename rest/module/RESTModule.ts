@@ -8,11 +8,11 @@ import {RESTServiceConfig} from "./Service/RESTServiceConfig";
     ]
 })
 export class RESTModule {
-    static setPath(path: string): ModuleWithProviders {
+    static init(path: string, tokenKey?: string): ModuleWithProviders {
         return {
             ngModule: RESTModule,
             providers: [
-                {provide: RESTServiceConfig, useValue: {path: path}}
+                {provide: RESTServiceConfig, useValue: {path: path, tokenKey: tokenKey}}
             ]
         };
     }
