@@ -1,7 +1,4 @@
-@import '~sass-material-colors';
 @import '~sass-mq';
-
-$index: 1000;
 
 .modal, .backdrop {
   position: fixed;
@@ -16,7 +13,7 @@ $index: 1000;
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
-  z-index: $index + 1;
+  z-index: 1000;
   overflow: auto;
 
   .modal-center {
@@ -51,20 +48,19 @@ $index: 1000;
       top: 0;
       right: 0;
       padding: 15px;
-      color: material-color("grey", "400");
+      color: #bdbdbd; // material-color("grey", "400");
       display: block;
       transition: color 300ms linear;
 
       &:hover {
-        color: material-color("grey", "500");
+        color: #9e9e9e; // material-color("grey", "500");
       }
     }
   }
-}
 
-.backdrop {
-  background: rgba(0, 0, 0, 0.3);
-  z-index: $index;
+  .backdrop {
+    background: rgba(0, 0, 0, 0.3);
+  }
 }
 
 @include mq($from: desktop) {
