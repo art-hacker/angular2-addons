@@ -33,7 +33,10 @@
     overflow: hidden;
 
     @include mq($from: tablet) {
-      animation: fade 600ms ease-in-out both, zoom 600ms ease-in-out both;
+      &.animation {
+        animation: fade 600ms ease-in-out both, zoom 600ms ease-in-out both;
+      }
+
       border-radius: 3px;
       box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
       margin: 20px;
