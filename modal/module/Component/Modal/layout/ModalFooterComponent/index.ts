@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 
 @Component({
     selector: "modal-footer",
-    templateUrl: "./template.pug",
+    template: "<ng-content></ng-content>",
     styleUrls: ["./style.shadow.scss"]
 })
 export class ModalFooterComponent {

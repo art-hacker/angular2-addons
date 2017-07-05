@@ -1,4 +1,5 @@
-import {Component, Input, Host} from "@angular/core";
+import {Component, Host} from "@angular/core";
+
 import {ModalComponent} from "../../index";
 
 @Component({
@@ -7,7 +8,6 @@ import {ModalComponent} from "../../index";
     styleUrls: ["./style.shadow.scss"]
 })
 export class ModalHeaderComponent {
-    @Input("title") title: string;
     public parent: ModalComponent;
     
     constructor(@Host() parent: ModalComponent) {
