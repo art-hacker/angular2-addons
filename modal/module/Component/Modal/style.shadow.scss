@@ -17,9 +17,11 @@ $index: 1000;
   flex-wrap: nowrap;
   z-index: $index;
   overflow: auto;
+  cursor: pointer;
 
   .modal-center {
     margin: auto;
+    position: relative;
 
     @include mq($until: tablet) {
       width: 100%;
@@ -29,10 +31,9 @@ $index: 1000;
   }
 
   .modal-box {
-    position: relative;
     z-index: 1;
-    background: white;
     overflow: hidden;
+    cursor: default;
 
     @include mq($from: tablet) {
       &.animation {
@@ -51,7 +52,7 @@ $index: 1000;
 }
 
 .backdrop {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.8);
   z-index: $index - 1;
 }
 
