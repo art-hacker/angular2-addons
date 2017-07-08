@@ -1,3 +1,7 @@
 ng-content
-a.close((click)="parent.close()", *ngIf="parent && parent.canClose")
+a.close(
+  *ngIf="parent && parent.closeMode != 0",
+  [style.padding]="padding",
+  (click)="parent.close()", 
+)
   i.fa.fa-times

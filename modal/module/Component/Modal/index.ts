@@ -1,4 +1,5 @@
 import {Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild} from "@angular/core";
+import {ModalCloseMode} from "../../Entity/ModalCloseMode";
 
 @Component({
     selector: "modal",
@@ -12,8 +13,9 @@ export class ModalComponent {
     @Input("height") height: string = "auto";
     @Input("backdrop") backdrop: boolean = true;
     @Input("animation") animation: boolean = true;
-    @Input("backdrop-close") isBackdropClose: boolean = true;
-    @Input("can-close") canClose: boolean = true;
+    
+    @Input("close-mode") closeMode: ModalCloseMode = ModalCloseMode.backdrop;
+    
     @Output("on-close") onClose = new EventEmitter<void>();
     @ViewChild('modal') modal: ElementRef;
 
@@ -21,13 +23,13 @@ export class ModalComponent {
 
     @HostListener('click', ['$event.target'])
     private backdropClose(target: HTMLElement) {
-        if(this.isBackdropClose && target == this.elRef.nativeElement.querySelector('.modal')) {
+        if(this.closeMode == ModalCloseMode.backdrop && target == this.elRef.nativeElement.querySelector('.modal')) {
             this.close();
         }
     }    
     
     private onKeyDown($event: KeyboardEvent): void {
-        if ($event.key === "Escape" && this.canClose) {
+        if ($event.key === "Escape" && this.closeMode != ModalCloseMode.none) {
             this.close()
         }
     }
