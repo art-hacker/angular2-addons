@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild} from "@angular/core";
+import {Component, ElementRef, EventEmitter, HostListener, Input, Output} from "@angular/core";
 import {ModalCloseMode} from "../../Entity/ModalCloseMode";
 
 @Component({
@@ -25,7 +25,7 @@ export class ModalComponent {
         }
     }
 
-    @HostListener('document:keydown.escape', ['$event'])
+    @HostListener('document:keydown.escape')
     public close(): void {
         this.onClose.emit();
     }
