@@ -1,6 +1,6 @@
 {
   "name": "@angular-addons/rest",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Angular 2 rest service",
   "author": "angular-addons",
   "license": "ISC",
@@ -15,7 +15,6 @@
     "@angular/core": "^4.0.0",
     "@angular/http": "^4.1.0",
     "@angular/platform-browser": "^4.1.0",
-    "rxjs": "~5.0.1",
-    "zone.js": "^0.8.4"
+    "rxjs": "^5.0.1"
   }
 }
