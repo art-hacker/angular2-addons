@@ -3,6 +3,8 @@ import {Injectable, Optional} from "@angular/core";
 import {Dictionaries, DictionariesNavigatorAliases, Locale} from "../Entity/Definitions";
 import {TranslationConfigService} from "./TranslationConfigService";
 
+const localStorage = typeof window !='undefined' ? window.localStorage : { getItem(key: any): any { return null }, removeItem(key: any) {}, setItem(key: any, val: any) {} };
+
 @Injectable()
 export class TranslationService {
     private dictionaries: Dictionaries;
@@ -36,7 +38,10 @@ export class TranslationService {
         localStorage.setItem("locale", locale);
     }
 
-    public getDefaultLocale(): Locale {
+    public getDefaultLocale(): Locale | void {
+        if(typeof navigator == 'undefined') 
+            return;
+        
         for (let locale in this.aliases) {
             if (this.aliases.hasOwnProperty(locale)) {
                 let isLangExist = this.aliases[<Locale>locale].filter(
