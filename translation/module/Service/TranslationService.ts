@@ -1,6 +1,6 @@
 import {Injectable, Optional} from "@angular/core";
 
-import {Dictionaries, DictionariesNavigatorAliases, Locale} from "../Entity/Definitions";
+import {Dictionaries, DictionariesNavigatorAliases, Dictionary, Locale} from "../Entity/Definitions";
 import {TranslationConfigService} from "./TranslationConfigService";
 
 const localStorage = typeof window !='undefined' ? window.localStorage : { getItem(key: any): any { return null }, removeItem(key: any) {}, setItem(key: any, val: any) {} };
@@ -25,8 +25,11 @@ export class TranslationService {
         if (!this.dictionaries.hasOwnProperty(this.getLocale())) {
             throw new Error(`Locale ${this.getLocale()} does not exist`);
         }
+        
+        let dictionary : Dictionary = this.dictionaries[this.getLocale()]
+            .reduce((previous: Dictionary, current: Dictionary) => Object.assign(previous, current));
 
-        return this.dictionaries[this.getLocale()][value] || value;
+        return dictionary[value] || value;
     }
 
     public getLocale(): Locale {
