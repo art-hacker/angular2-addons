@@ -1,6 +1,8 @@
 import {Injectable, Optional} from "@angular/core";
 import {Headers, Http, Request, RequestOptions, RequestOptionsArgs, Response, XHRBackend} from "@angular/http";
 import {Observable} from "rxjs";
+import 'rxjs/add/operator/catch';
+
 import {RESTServiceConfig} from "./RESTServiceConfig";
 
 @Injectable()
