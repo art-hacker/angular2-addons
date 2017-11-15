@@ -18,7 +18,7 @@ export class ModalComponent {
     constructor(private elRef: ElementRef) {}
 
     @HostListener('click', ['$event.target'])
-    private backdropClose(target: HTMLElement | null) {
+    private backdropClose(target: HTMLElement | any) {
         let modal: HTMLElement = this.elRef.nativeElement.querySelector('.modal');
         if(this.closeMode == ModalCloseMode.backdrop && (target == modal || target == modal.children[0])) {
             this.close();
