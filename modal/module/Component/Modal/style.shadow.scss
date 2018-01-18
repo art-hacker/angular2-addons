@@ -15,11 +15,14 @@ $index: 1000;
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
-  z-index: $index;
   overflow: auto;
   
   &.closable-backdrop {
     cursor: pointer;
+  }
+  
+  &.has-backdrop {
+    z-index: $index;
   }
 
   .modal-center {

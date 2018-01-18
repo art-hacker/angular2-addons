@@ -1,4 +1,4 @@
-.modal([ngClass]="{'closable-backdrop': closeMode == 2}")
+.modal([ngClass]="{'closable-backdrop': closeMode == 2, 'has-backdrop': backdrop}")
   .modal-center
     .modal-box([ngStyle]="{width: width, height: height}", [ngClass]="{animation: animation}")
       ng-content
