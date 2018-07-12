@@ -1,6 +1,6 @@
 {
   "name": "@angular-addons/focus",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Angular 2 input focus direcrive",
   "repository": {
     "type": "git",
@@ -10,6 +10,6 @@
   "author": "angular-addons",
   "license": "ISC",
   "dependencies": {
-    "@angular/core": "^5.0.0"
+    "@angular/core": "^6.0.0"
   }
 }
