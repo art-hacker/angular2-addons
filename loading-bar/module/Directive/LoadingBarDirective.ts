@@ -1,8 +1,9 @@
 import {Directive, HostBinding} from "@angular/core";
 
-import {LoadingBarEvents} from "../Event/LoadingBarEvents";
-import {LoadingBar} from "../Entity/LoadingBar";
-import {LoadingBarState} from "../Entity/LoadingBarState";
+import {LoadingBarEvents} from "../..";
+import {LoadingBar} from "../..";
+import {LoadingBarState} from "../..";
+import {map} from "rxjs/operators";
 
 @Directive({
     selector: "[loading-bar]"
@@ -13,11 +14,11 @@ export class LoadingBarDirective {
 
     constructor(private loadingBarEvents: LoadingBarEvents) {
         loadingBarEvents.onChangeProgress
-            .map((loadingBar: LoadingBar) => loadingBar.progress)
+            .pipe(map((loadingBar: LoadingBar) => loadingBar.progress))
             .subscribe((progress: number) => this.width = progress);
 
         loadingBarEvents.onChangeState
-            .map((loadingBar: LoadingBar) => loadingBar.state)
+            .pipe(map((loadingBar: LoadingBar) => loadingBar.state))
             .subscribe((state: LoadingBarState) => this.opacty = state)
     }
 }

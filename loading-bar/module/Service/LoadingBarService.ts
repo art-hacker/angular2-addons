@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
 
-import {LoadingBarEvents} from "../Event/LoadingBarEvents";
-import {LoadingBar} from "../Entity/LoadingBar";
-import {LoadingBarState} from "../Entity/LoadingBarState";
+import {LoadingBarEvents} from "../..";
+import {LoadingBar} from "../..";
+import {LoadingBarState} from "../..";
 
 import {LoadingBarSubscriptions} from "../Subscription/LoadingBarSubscriptions";
+import {interval as observableInterval} from "rxjs/internal/observable/interval";
+import {take} from "rxjs/operators";
 
 @Injectable()
 export class LoadingBarService {
@@ -28,15 +29,13 @@ export class LoadingBarService {
 
             if (loadingBar.progress == 0)
                 this.event.onResetProgress.emit(loadingBar);
-
         });
 
         this.event.onCompleteProgress.subscribe(() => {
             this.subscription.completeProgressSubscription.unsubscribe();
 
-            this.subscription.completeProgressSubscription = Observable
-                .interval(300)
-                .take(2).subscribe((step: number) => {
+            this.subscription.completeProgressSubscription = observableInterval(300).pipe(take(2))
+                .subscribe((step: number) => {
                     switch (step) {
                         case 0:
                             this.deactivate();
@@ -72,9 +71,8 @@ export class LoadingBarService {
     public startProgress(duration = 500): void {
         this.stopProgress();
         this.incProgress();
-        this.subscription.startProgressSubscription = Observable
-            .interval(duration)
-            .take(100 - this.getLoadingBar.progress)
+        this.subscription.startProgressSubscription = observableInterval(duration)
+            .pipe(take(100 - this.getLoadingBar.progress))
             .subscribe(() => this.incProgress());
     }
 

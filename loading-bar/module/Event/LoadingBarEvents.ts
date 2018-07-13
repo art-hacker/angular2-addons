@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable} from "@angular/core";
 
-import {LoadingBar} from "../Entity/LoadingBar";
+import {LoadingBar} from "../..";
 
 @Injectable()
 export class LoadingBarEvents {
